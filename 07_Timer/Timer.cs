@@ -17,19 +17,41 @@
         public int Seconds 
         {
             get { return this.seconds; }
-            set { this.seconds = value; }
+            set
+            {
+                if (value > 60)
+                {
+                    this.seconds = value % 60;
+                    this.Minutes = value - seconds;
+                }
+                else
+                {
+                    this.seconds = value;
+                }
+            }
         }
 
         public int Minutes
         {
             get { return this.minutes; }
-            set { this.minutes = value; }
+            private set
+            {
+                if (value / 60 > 60)
+                {
+                    this.minutes = (value / 60) % 60;
+                    this.Hours = (value / 60) - minutes;
+                }
+                else
+                {
+                    this.minutes = value / 60;
+                }
+            }
         }
 
         public int Hours
         {
             get { return this.hours; }
-            set { this.hours = value; }
+            set { this.hours = (value / 60); }
         }
     }
 }
