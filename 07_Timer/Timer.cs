@@ -8,10 +8,15 @@
 
         public override string ToString()
         {
-            string s = string.Format("{0:00}", seconds);
-            string m = string.Format("{0:00}", minutes);
-            string h = string.Format("{0:00}", hours);
-            return h + ":" + m + ":" + s;
+            //string s = string.Format("{0:00}", seconds);
+            //string m = string.Format("{0:00}", minutes);
+            //string h = string.Format("{0:00}", hours);
+            return Padded(hours) + ":" + Padded(minutes) + ":" + Padded(seconds);
+        }
+
+        public string Padded(int s)
+        {
+            return string.Format("{0:00}", s);
         }
 
         public int Seconds 
@@ -51,7 +56,7 @@
         public int Hours
         {
             get { return this.hours; }
-            set { this.hours = (value / 60); }
+            private set { this.hours = (value / 60); }
         }
     }
 }
